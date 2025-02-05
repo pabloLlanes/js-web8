@@ -94,3 +94,145 @@ Finalmente, imprime el resultado.
 Empates
 
  */
+
+
+// 5️⃣ EJERCICIOS PRÁCTICOS
+// ------------------------------------------------------------
+
+// 🏆 EJERCICIO 1: Mostrar en tiempo real la tecla que el usuario presiona en un input
+const inputTeclas = document.getElementById("inputTeclas");
+const resultadoTecla = document.getElementById("resultadoTecla");
+if (inputTeclas && resultadoTecla) {
+  inputTeclas.addEventListener("keyup", function (e) {
+    resultadoTecla.innerText = `Última tecla presionada: ${e.key}`;
+  });
+}
+
+// 🏆 EJERCICIO 2: Cambiar el color de un div al pasar el mouse
+const cajaColor = document.getElementById("cajaColor");
+if (cajaColor) {
+  cajaColor.addEventListener("mouseover", function () {
+    cajaColor.style.backgroundColor = "lightblue";
+  });
+  cajaColor.addEventListener("mouseout", function () {
+    cajaColor.style.backgroundColor = "";
+  });
+}
+
+// 🏆 EJERCICIO 3: Capturar el envío de un formulario y mostrar los datos
+const formEjemplo = document.getElementById("formEjemplo");
+if (formEjemplo) {
+  formEjemplo.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const nombre = formEjemplo.elements["nombre"].value;
+    const email = formEjemplo.elements["email"].value;
+    alert(`Datos capturados:\nNombre: ${nombre}\nEmail: ${email}`);
+  });
+}
+
+// 🏆 EJERCICIO 4: Agregar elementos a una lista al hacer click en un botón
+const btnAgregarItem = document.getElementById("btnAgregarItem");
+const listaElementos = document.getElementById("listaElementos");
+if (btnAgregarItem && listaElementos) {
+  btnAgregarItem.addEventListener("click", function () {
+    const nuevoItem = document.createElement("li");
+    nuevoItem.innerText = "Nuevo ítem agregado";
+    listaElementos.appendChild(nuevoItem);
+  });
+}
+
+// 🏆 EJERCICIO 5: Checkbox - Mostrar mensaje cuando se acepte términos
+const checkTerminos = document.getElementById("checkTerminos");
+const msjTerminos = document.getElementById("msjTerminos");
+if (checkTerminos && msjTerminos) {
+  checkTerminos.addEventListener("change", function () {
+    msjTerminos.innerText = checkTerminos.checked ? "¡Has aceptado los términos!" : "Aún no aceptas los términos.";
+  });
+}
+
+// 🏆 EJERCICIO 6: Detectar doble clic en un botón y cambiar su color
+const btnDobleClick = document.getElementById("btnDobleClick");
+if (btnDobleClick) {
+  btnDobleClick.addEventListener("dblclick", function () {
+    btnDobleClick.style.backgroundColor = "red";
+    alert("¡Hiciste doble clic!");
+  });
+}
+
+// 🏆 EJERCICIO 7: Detectar la carga de un formulario y mostrar mensaje
+window.addEventListener("load", function () {
+  console.log("La página se ha cargado completamente.");
+  alert("Bienvenido, la página está lista para usarse.");
+});
+
+
+
+// 1️⃣ Esperamos a que el DOM esté completamente cargado antes de ejecutar el script
+document.addEventListener("DOMContentLoaded", function () {
+  // Insertamos el header y el footer automáticamente en la página
+  insertarHeader();
+  insertarFooter();
+  agregarEventosDeNavegacion();
+});
+
+// 2️⃣ Función para insertar el HEADER en la página
+function insertarHeader() {
+  let header = document.createElement("header"); // Creamos el elemento <header>
+
+  // Aplicamos estilos al header
+  header.style.background = "#333";
+  header.style.color = "white";
+  header.style.padding = "10px";
+  header.style.textAlign = "center";
+
+  // Agregamos el contenido HTML del header
+  header.innerHTML = `
+        <h1>Mi Sitio Web</h1>
+        <nav>
+            <button id="btnInicio">Inicio</button>
+            <button id="btnPagina2">Página 2</button>
+            <button id="btnPagina3">Página 3</button>
+        </nav>
+    `;
+
+  // Insertamos el header al principio del <body>
+  document.body.prepend(header);
+}
+
+// 3️⃣ Función para insertar el FOOTER en la página
+function insertarFooter() {
+  let footer = document.createElement("footer"); // Creamos el elemento <footer>
+
+  // Aplicamos estilos al footer
+  footer.style.background = "#222";
+  footer.style.color = "white";
+  footer.style.padding = "10px";
+  footer.style.textAlign = "center";
+  footer.style.position = "fixed"; // Fijamos el footer abajo
+  footer.style.bottom = "0";
+  footer.style.width = "100%";
+
+  // Agregamos el contenido al footer
+  footer.innerHTML = `<p>&copy; 2025 - Todos los derechos reservados</p>`;
+
+  // Insertamos el footer al final del <body>
+  document.body.appendChild(footer);
+}
+
+// 4️⃣ Función para agregar eventos a los botones del header y permitir la navegación
+function agregarEventosDeNavegacion() {
+  document.getElementById("btnInicio").addEventListener("click", function () {
+    navegarA("index.html");
+  });
+  document.getElementById("btnPagina2").addEventListener("click", function () {
+    navegarA("pagina2.html");
+  });
+  document.getElementById("btnPagina3").addEventListener("click", function () {
+    navegarA("pagina3.html");
+  });
+}
+
+// 5️⃣ Función para navegar entre páginas usando el BOM (Browser Object Model)
+function navegarA(pagina) {
+  window.location.href = pagina; // Cambiamos la ubicación de la ventana actual
+}
